@@ -1,147 +1,69 @@
-# 🎬 Netflix Data ETL and Analysis Project
+# 🎬 Netflix Data ETL Project
 
-This project demonstrates the **ETL (Extract, Transform, Load)** process on Netflix data using **PostgreSQL** and **Python (Jupyter Notebook)**. The dataset contains information about movies and TV shows on Netflix, including titles, directors, actors, genres, and more. The goal is to analyze the data to gain insights about Netflix's catalog.
-
-## 📊 Dataset Overview
-
-The dataset used in this project includes information such as:
-- **🎬 Titles**: Names of movies and shows.
-- **🎥 Directors**: Names of directors.
-- **🗺️ Country**: Country of production.
-- **🕒 Duration**: Length of the movie or show.
-- **⭐ Rating**: Ratings for content.
-- **📅 Release Year**: Year of release.
-- **🎭 Genre**: Categories like Comedy, Drama, etc.
-
-**Source**: [Netflix Shows Dataset on Kaggle](https://www.kaggle.com/shivamb/netflix-shows)
-
-## 🎯 Project Objectives
-
-The project involves the following objectives:
-1. Extracting Netflix data from a CSV file.
-2. Transforming and cleaning the data using SQL and Python.
-3. Loading the cleaned data into a PostgreSQL database.
-4. Analyzing the data using SQL queries and Python to extract insights.
-
-## 🛠️ Technologies Used
-
-The following tools were used to build this project:
-- **Python**: Data manipulation and processing.
-- **Pandas**: For reading and cleaning the CSV data.
-- **SQLAlchemy**: For connecting to PostgreSQL from Python.
-- **PostgreSQL**: To store and query the data.
-- **Jupyter Notebook**: For Python-based analysis and exploration.
-
-## 🛠️ ETL Process
-
-### 1. Extract
-
-The Netflix dataset is extracted in CSV format using **Pandas**.
-
-```python
-import pandas as pd
-df = pd.read_csv('netflix_titles.csv')
-
-# 🎬 Netflix Data ETL and Analysis Project
-
-This project demonstrates the **ETL (Extract, Transform, Load)** process on Netflix data using **PostgreSQL** and **Python (Jupyter Notebook)**. The dataset contains information about movies and TV shows on Netflix, including titles, directors, actors, genres, and more. The goal is to analyze the data to gain insights about Netflix's catalog.
+This project involves the extraction, transformation, and loading (ETL) of Netflix data using SQL and Python. The goal is to clean, structure, and analyze Netflix data to derive actionable insights.
 
 ## 📊 Dataset Overview
 
-The dataset used in this project includes information such as:
-- **🎬 Titles**: Names of movies and shows.
-- **🎥 Directors**: Names of directors.
-- **🗺️ Country**: Country of production.
-- **🕒 Duration**: Length of the movie or show.
-- **⭐ Rating**: Ratings for content.
-- **📅 Release Year**: Year of release.
-- **🎭 Genre**: Categories like Comedy, Drama, etc.
+The dataset includes the following columns:
 
-**Source**: [Netflix Shows Dataset on Kaggle](https://www.kaggle.com/shivamb/netflix-shows)
+- **show_id**: Unique identifier for each show.
+- **type**: Type of content (Movie/TV Show).
+- **title**: Title of the show.
+- **director**: Director(s) of the show.
+- **cast**: Cast members.
+- **country**: Country where the show was produced.
+- **date_added**: Date when the show was added to Netflix.
+- **release_year**: Release year of the show.
+- **rating**: Rating of the show.
+- **duration**: Duration of the show.
+- **listed_in**: Genres listed for the show.
+- **description**: Description of the show.
 
 ## 🎯 Project Objectives
 
-The project involves the following objectives:
-1. Extracting Netflix data from a CSV file.
-2. Transforming and cleaning the data using SQL and Python.
-3. Loading the cleaned data into a PostgreSQL database.
-4. Analyzing the data using SQL queries and Python to extract insights.
+The project aims to achieve the following objectives:
 
-## 🛠️ Technologies Used
+- **ETL Process**: Load raw Netflix data into a PostgreSQL database and clean the data by removing duplicates and handling missing values.
+- **Data Transformation**: Redesign the database structure and create normalized tables for directors, listed_in, country, and cast.
+- **Data Analysis**: Perform various analyses to answer specific questions about the data.
 
-The following tools were used to build this project:
-- **Python**: Data manipulation and processing.
-- **Pandas**: For reading and cleaning the CSV data.
-- **SQLAlchemy**: For connecting to PostgreSQL from Python.
-- **PostgreSQL**: To store and query the data.
-- **Jupyter Notebook**: For Python-based analysis and exploration.
+## 🔄 ETL Process
 
-## 🛠️ ETL Process
+- **Extract**: Read data from a CSV file using Python and Pandas.
+- **Transform**: Clean and transform the data using SQL, including:
+  - Removing duplicates
+  - Filling missing values
+  - Creating normalized tables
+- **Load**: Insert the transformed data into the PostgreSQL database.
 
-### 1. Extract
+## 📈 Analysis Summary
 
-The Netflix dataset is extracted in CSV format using **Pandas**.
+The analysis covers several key insights, including:
 
-```python
-import pandas as pd
-df = pd.read_csv('netflix_titles.csv')
+- **Directors**: Counting the number of movies and TV shows created by directors who have worked on both.
+- **Comedy Shows**: Identifying the country with the highest number of comedy movies.
+- **Director Performance**: Analyzing which director had the most movies released each year.
+- **Average Movie Duration**: Calculating the average duration of movies in each genre.
+- **Genre Analysis**: Finding directors who have created both horror and comedy movies.
 
-## 2. Transform
-Transformations are applied to clean and reshape the data, such as handling missing values and creating separate tables for genres, directors, and countries.
+## 🚀 How to Use
 
--- SQL Query to split the 'director' column into a new table
-CREATE TABLE netflix_directors AS
-SELECT show_id, TRIM(REGEXP_SPLIT_TO_TABLE(director, ',')) AS director
-FROM netflix_raw;
+1. **Clone the Repository:**
 
-## 3. Load
-The transformed data is loaded into a PostgreSQL database using SQLAlchemy in Python.
+    ```bash
+    git clone https://github.com/yourusername/netflix-data-etl.git
+    ```
 
-import sqlalchemy as sal
-engine = sal.create_engine('postgresql://username:password@localhost:5432/netflix_data')
-conn = engine.connect()
-df.to_sql('netflix_raw', con=conn, index=False, if_exists='append')
-conn.close()
+2. **Install Dependencies:** Make sure you have Python and PostgreSQL installed. Install required Python libraries:
 
-## 📝 Data Analysis
-Several SQL queries and Python functions were used to analyze the cleaned data, including:
+    ```bash
+    pip install pandas sqlalchemy psycopg2
+    ```
 
-**Top Directors** Identifying directors with the highest number of shows or movies.
-**Most Popular Genres** Finding the most frequent genres on Netflix.
-**Country Analysis** Analyzing which countries produce the most content.
-**Duration and Ratings:** Finding relationships between content duration and rating categories.
+3. **Setup Database:**
+   - Create a PostgreSQL database named `netflix_data`.
+   - Update the connection string in the Python code if needed.
 
-Sample Python Code for Analysis:
-python
-Copy code
-df[df['show_id'] == 's5023']
+4. **Run the ETL Process:** Execute the Python script to load data into the database.
 
-## 🚀 How to Run the Project
-**Clone the repository:**
-git clone https://github.com/Gagann01/netflix-data-etl-analysis.git
-Set up PostgreSQL:
-
-Install PostgreSQL and create a new database named netflix_data.
-Install the dependencies:
-
-pip install pandas sqlalchemy psycopg2
-Run the Jupyter Notebook to perform the ETL and analysis:
-
-
-📈 Summary of Insights
-Through the analysis, several key insights were derived:
-The top directors and genres contributing to Netflix's content library were identified.
-Relationships between show durations, genres, and ratings were explored.
-SQL queries helped uncover trends in countries producing the most content and the average content duration for each genre.
-
-🚀 Future Enhancements
-Some potential improvements:
-Adding a recommendation system based on ratings and user preferences.
-Analyzing trends over time, such as the rise in a particular genre or director.
-Expanding the dataset with real-time scraping from Netflix's website.
-
-
-
-
-
-
+5. **Perform Analysis:** Use the provided SQL queries to analyze the data in PostgreSQL.
