@@ -46,7 +46,7 @@ engine = sal.create_engine('postgresql://postgres:1Loveche&&@localhost:5432/netf
 conn = engine.connect()
 df.to_sql('netflix_raw', con = conn, index = False, if_exists = 'append')
 conn.close()
-df[df.show_id=='s5023']```
+df[df.show_id=='s5023']```python
 
 ## 📈 Analysis Summary
 
