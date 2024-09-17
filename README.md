@@ -36,17 +36,6 @@ The project aims to achieve the following objectives:
   - Creating normalized tables
 - **Load**: Insert the transformed data into the PostgreSQL database.
 
-- ### Python Code
-
-```python
-import pandas as pd
-df = pd.read_csv('netflix_titles.csv')
-import sqlalchemy as sal
-engine = sal.create_engine('postgresql://postgres:1Loveche&&@localhost:5432/netflix_data')
-conn = engine.connect()
-df.to_sql('netflix_raw', con = conn, index = False, if_exists = 'append')
-conn.close()
-df[df.show_id=='s5023'] python```
 ## 📈 Analysis Summary 
 
 The analysis covers several key insights, including:
