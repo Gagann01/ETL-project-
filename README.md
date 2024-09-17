@@ -42,50 +42,6 @@ The Netflix dataset is extracted in CSV format using **Pandas**.
 import pandas as pd
 df = pd.read_csv('netflix_titles.csv')
 
-# 🎬 Netflix Data ETL and Analysis Project
-
-This project demonstrates the **ETL (Extract, Transform, Load)** process on Netflix data using **PostgreSQL** and **Python (Jupyter Notebook)**. The dataset contains information about movies and TV shows on Netflix, including titles, directors, actors, genres, and more. The goal is to analyze the data to gain insights about Netflix's catalog.
-
-## 📊 Dataset Overview
-
-The dataset used in this project includes information such as:
-- **🎬 Titles**: Names of movies and shows.
-- **🎥 Directors**: Names of directors.
-- **🗺️ Country**: Country of production.
-- **🕒 Duration**: Length of the movie or show.
-- **⭐ Rating**: Ratings for content.
-- **📅 Release Year**: Year of release.
-- **🎭 Genre**: Categories like Comedy, Drama, etc.
-
-**Source**: [Netflix Shows Dataset on Kaggle](https://www.kaggle.com/shivamb/netflix-shows)
-
-## 🎯 Project Objectives
-
-The project involves the following objectives:
-1. Extracting Netflix data from a CSV file.
-2. Transforming and cleaning the data using SQL and Python.
-3. Loading the cleaned data into a PostgreSQL database.
-4. Analyzing the data using SQL queries and Python to extract insights.
-
-## 🛠️ Technologies Used
-
-The following tools were used to build this project:
-- **Python**: Data manipulation and processing.
-- **Pandas**: For reading and cleaning the CSV data.
-- **SQLAlchemy**: For connecting to PostgreSQL from Python.
-- **PostgreSQL**: To store and query the data.
-- **Jupyter Notebook**: For Python-based analysis and exploration.
-
-## 🛠️ ETL Process
-
-### 1. Extract
-
-The Netflix dataset is extracted in CSV format using **Pandas**.
-
-```python
-import pandas as pd
-df = pd.read_csv('netflix_titles.csv')
-
 2. Transform
 Transformations are applied to clean and reshape the data, such as handling missing values and creating separate tables for genres, directors, and countries.
 
