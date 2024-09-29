@@ -51,7 +51,7 @@ The analysis covers several key insights, including:
 1. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/yourusername/netflix-data-etl.git
+    git clone https://github.com/gagann01/netflix-data-etl.git
     ```
 
 2. **Install Dependencies:** Make sure you have Python and PostgreSQL installed. Install required Python libraries:
